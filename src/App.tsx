@@ -21,6 +21,7 @@ import ModuleCoordinatorDashboard from "./pages/dashboards/ModuleCoordinatorDash
 import CollegeAdminDashboard from "./pages/dashboards/CollegeAdminDashboard";
 import SuperAdminDashboard from "./pages/dashboards/SuperAdminDashboard";
 import NotFound from "./pages/NotFound";
+import { PwaUpdateBanner } from "@/components/PwaUpdateBanner";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
+          <PwaUpdateBanner />
           <BrowserRouter>
             <AuthProvider>
               <Routes>

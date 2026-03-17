@@ -1,7 +1,6 @@
 import { Navigate } from "react-router-dom";
 import { useAuth, ROLE_ROUTE_MAP } from "@/contexts/AuthContext";
-
-type AppRole = "student" | "teacher" | "coordinator" | "head_coordinator" | "module_coordinator" | "college_admin" | "super_admin";
+import type { AppRole } from "@/lib/appRoles";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;

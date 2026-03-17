@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <rect width="1080" height="1920" fill="#FAFAFA"/>
+  <rect x="96" y="140" width="888" height="220" rx="32" fill="#2D5BFF"/>
+  <text x="140" y="260" font-family="Inter, Arial" font-size="64" fill="#fff">Student Dashboard</text>
+  <rect x="96" y="420" width="888" height="560" rx="32" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="140" y="520" font-family="Inter, Arial" font-size="44" fill="#111827">QR Scanner</text>
+  <rect x="140" y="570" width="360" height="360" rx="24" fill="#111827" opacity="0.06"/>
+  <rect x="540" y="570" width="396" height="60" rx="16" fill="#111827" opacity="0.06"/>
+  <rect x="540" y="650" width="396" height="60" rx="16" fill="#111827" opacity="0.06"/>
+  <rect x="540" y="730" width="300" height="60" rx="16" fill="#111827" opacity="0.06"/>
+  <rect x="96" y="1040" width="888" height="520" rx="32" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="140" y="1140" font-family="Inter, Arial" font-size="44" fill="#111827">Analytics</text>
+  <rect x="140" y="1200" width="800" height="260" rx="24" fill="#2D5BFF" opacity="0.10"/>
+</svg>
+

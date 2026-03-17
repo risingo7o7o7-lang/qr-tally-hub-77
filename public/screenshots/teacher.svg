@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <rect width="1080" height="1920" fill="#0b1220"/>
+  <rect x="96" y="140" width="888" height="220" rx="32" fill="#2D5BFF"/>
+  <text x="140" y="260" font-family="Inter, Arial" font-size="64" fill="#fff">Teacher QR Display</text>
+  <rect x="96" y="420" width="888" height="1220" rx="32" fill="#111827" stroke="#1f2937"/>
+  <rect x="210" y="560" width="660" height="660" rx="40" fill="#ffffff"/>
+  <rect x="280" y="630" width="180" height="180" rx="20" fill="#2D5BFF" opacity="0.2"/>
+  <rect x="620" y="630" width="180" height="180" rx="20" fill="#2D5BFF" opacity="0.2"/>
+  <rect x="280" y="970" width="180" height="180" rx="20" fill="#2D5BFF" opacity="0.2"/>
+  <text x="210" y="1340" font-family="Inter, Arial" font-size="44" fill="#9CA3AF">Rotating QR every 25 seconds</text>
+</svg>
+
