@@ -14,16 +14,175 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      colleges: {
+        Row: {
+          created_at: string
+          domain: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          domain: string
+          id: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          domain?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          college_email: string
+          college_id: string
+          created_at: string
+          deleted_at: string | null
+          device_bound: boolean
+          device_hash: string | null
+          id: string
+          name: string
+          semester_id: string
+          student_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          college_email: string
+          college_id?: string
+          created_at?: string
+          deleted_at?: string | null
+          device_bound?: boolean
+          device_hash?: string | null
+          id?: string
+          name: string
+          semester_id?: string
+          student_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          college_email?: string
+          college_id?: string
+          created_at?: string
+          deleted_at?: string | null
+          device_bound?: boolean
+          device_hash?: string | null
+          id?: string
+          name?: string
+          semester_id?: string
+          student_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      semesters: {
+        Row: {
+          college_id: string
+          created_at: string
+          end_date: string
+          id: string
+          is_active: boolean
+          name: string
+          start_date: string
+        }
+        Insert: {
+          college_id: string
+          created_at?: string
+          end_date: string
+          id: string
+          is_active?: boolean
+          name: string
+          start_date: string
+        }
+        Update: {
+          college_id?: string
+          created_at?: string
+          end_date?: string
+          id?: string
+          is_active?: boolean
+          name?: string
+          start_date?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "semesters_college_id_fkey"
+            columns: ["college_id"]
+            isOneToOne: false
+            referencedRelation: "colleges"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      site_settings: {
+        Row: {
+          college_id: string
+          key: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          college_id?: string
+          key: string
+          updated_at?: string
+          value?: string
+        }
+        Update: {
+          college_id?: string
+          key?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          college_id: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          college_id?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          college_id?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_user_college_id: { Args: { _user_id: string }; Returns: string }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role:
+        | "student"
+        | "teacher"
+        | "coordinator"
+        | "head_coordinator"
+        | "module_coordinator"
+        | "college_admin"
+        | "super_admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +309,16 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: [
+        "student",
+        "teacher",
+        "coordinator",
+        "head_coordinator",
+        "module_coordinator",
+        "college_admin",
+        "super_admin",
+      ],
+    },
   },
 } as const
