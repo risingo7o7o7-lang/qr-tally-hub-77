@@ -54,7 +54,7 @@ export default defineConfig(({ mode }) => ({
           {
             urlPattern: ({ request, url }) =>
               request.method === "GET" &&
-              url.origin === globalThis.location.origin &&
+              url.origin === (globalThis as any).location?.origin &&
               (request.destination === "style" ||
               request.destination === "script" ||
               request.destination === "worker"),
