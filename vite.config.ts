@@ -46,9 +46,7 @@ export default defineConfig(({ mode }) => ({
           enctype: "application/x-www-form-urlencoded",
           params: { title: "title", text: "text", url: "url" },
         },
-        // Placeholder for future Android push notifications
-        gcm_sender_id: "103953800507",
-      },
+      } as any,
       workbox: {
         navigateFallback: "/index.html",
         runtimeCaching: [
