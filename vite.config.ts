@@ -46,9 +46,7 @@ export default defineConfig(({ mode }) => ({
           enctype: "application/x-www-form-urlencoded",
           params: { title: "title", text: "text", url: "url" },
         },
-        // Placeholder for future Android push notifications
-        gcm_sender_id: "103953800507",
-      },
+      } as any,
       workbox: {
         navigateFallback: "/index.html",
         runtimeCaching: [
@@ -56,12 +54,10 @@ export default defineConfig(({ mode }) => ({
           {
             urlPattern: ({ request, url }) =>
               request.method === "GET" &&
-              url.origin === self.location.origin &&
-              (
-              request.destination === "style" ||
+              url.origin === (globalThis as any).location?.origin &&
+              (request.destination === "style" ||
               request.destination === "script" ||
-              request.destination === "worker",
-              ),
+              request.destination === "worker"),
             handler: "CacheFirst",
             options: {
               cacheName: "app-shell",
@@ -71,7 +67,7 @@ export default defineConfig(({ mode }) => ({
           {
             urlPattern: ({ request, url }) =>
               request.method === "GET" &&
-              url.origin === self.location.origin &&
+              url.origin === (globalThis as any).location?.origin &&
               (request.destination === "font" || request.destination === "image"),
             handler: "CacheFirst",
             options: {
