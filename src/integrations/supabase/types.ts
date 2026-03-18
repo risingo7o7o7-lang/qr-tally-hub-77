@@ -14,6 +14,71 @@ export type Database = {
   }
   public: {
     Tables: {
+      attendance_records: {
+        Row: {
+          device_fingerprint: string | null
+          id: string
+          scanned_at: string
+          session_id: string
+          student_id: string
+        }
+        Insert: {
+          device_fingerprint?: string | null
+          id?: string
+          scanned_at?: string
+          session_id: string
+          student_id: string
+        }
+        Update: {
+          device_fingerprint?: string | null
+          id?: string
+          scanned_at?: string
+          session_id?: string
+          student_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "attendance_records_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      audit_logs: {
+        Row: {
+          action: string
+          actor_id: string | null
+          college_id: string
+          created_at: string
+          details: Json | null
+          id: string
+          target_id: string | null
+          target_type: string | null
+        }
+        Insert: {
+          action: string
+          actor_id?: string | null
+          college_id?: string
+          created_at?: string
+          details?: Json | null
+          id?: string
+          target_id?: string | null
+          target_type?: string | null
+        }
+        Update: {
+          action?: string
+          actor_id?: string | null
+          college_id?: string
+          created_at?: string
+          details?: Json | null
+          id?: string
+          target_id?: string | null
+          target_type?: string | null
+        }
+        Relationships: []
+      }
       colleges: {
         Row: {
           created_at: string
@@ -32,6 +97,105 @@ export type Database = {
           domain?: string
           id?: string
           name?: string
+        }
+        Relationships: []
+      }
+      device_reset_requests: {
+        Row: {
+          college_id: string
+          created_at: string
+          id: string
+          reason: string
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+          user_id: string
+        }
+        Insert: {
+          college_id?: string
+          created_at?: string
+          id?: string
+          reason: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          user_id: string
+        }
+        Update: {
+          college_id?: string
+          created_at?: string
+          id?: string
+          reason?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      external_student_db: {
+        Row: {
+          college_id: string
+          created_at: string
+          full_name: string
+          group_code: string
+          id: string
+          section_code: string
+          semester_id: string
+          student_id: string
+        }
+        Insert: {
+          college_id?: string
+          created_at?: string
+          full_name: string
+          group_code: string
+          id?: string
+          section_code: string
+          semester_id?: string
+          student_id: string
+        }
+        Update: {
+          college_id?: string
+          created_at?: string
+          full_name?: string
+          group_code?: string
+          id?: string
+          section_code?: string
+          semester_id?: string
+          student_id?: string
+        }
+        Relationships: []
+      }
+      managed_teachers: {
+        Row: {
+          college_id: string
+          coordinator_id: string
+          created_at: string
+          current_password: string
+          id: string
+          last_rotation_at: string
+          next_rotation_at: string
+          teacher_id: string
+        }
+        Insert: {
+          college_id?: string
+          coordinator_id: string
+          created_at?: string
+          current_password: string
+          id?: string
+          last_rotation_at?: string
+          next_rotation_at?: string
+          teacher_id: string
+        }
+        Update: {
+          college_id?: string
+          coordinator_id?: string
+          created_at?: string
+          current_password?: string
+          id?: string
+          last_rotation_at?: string
+          next_rotation_at?: string
+          teacher_id?: string
         }
         Relationships: []
       }
@@ -118,6 +282,54 @@ export type Database = {
           },
         ]
       }
+      sessions: {
+        Row: {
+          college_id: string
+          course_name: string
+          created_at: string
+          duration_minutes: number
+          ended_at: string | null
+          id: string
+          qr_rotated_at: string
+          qr_token: string
+          semester_id: string
+          session_type: string
+          started_at: string
+          target_group: string
+          teacher_id: string
+        }
+        Insert: {
+          college_id?: string
+          course_name: string
+          created_at?: string
+          duration_minutes?: number
+          ended_at?: string | null
+          id?: string
+          qr_rotated_at?: string
+          qr_token?: string
+          semester_id?: string
+          session_type?: string
+          started_at?: string
+          target_group?: string
+          teacher_id: string
+        }
+        Update: {
+          college_id?: string
+          course_name?: string
+          created_at?: string
+          duration_minutes?: number
+          ended_at?: string | null
+          id?: string
+          qr_rotated_at?: string
+          qr_token?: string
+          semester_id?: string
+          session_type?: string
+          started_at?: string
+          target_group?: string
+          teacher_id?: string
+        }
+        Relationships: []
+      }
       site_settings: {
         Row: {
           college_id: string
@@ -136,6 +348,36 @@ export type Database = {
           key?: string
           updated_at?: string
           value?: string
+        }
+        Relationships: []
+      }
+      student_group_assignments: {
+        Row: {
+          assigned_at: string
+          college_id: string
+          group_code: string
+          id: string
+          section_code: string
+          semester_id: string
+          user_id: string
+        }
+        Insert: {
+          assigned_at?: string
+          college_id?: string
+          group_code: string
+          id?: string
+          section_code: string
+          semester_id?: string
+          user_id: string
+        }
+        Update: {
+          assigned_at?: string
+          college_id?: string
+          group_code?: string
+          id?: string
+          section_code?: string
+          semester_id?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -162,7 +404,18 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      account_stats: {
+        Row: {
+          attendance_count: number | null
+          college_email: string | null
+          college_id: string | null
+          name: string | null
+          session_count: number | null
+          student_id: string | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       get_user_college_id: { Args: { _user_id: string }; Returns: string }
@@ -172,6 +425,14 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      student_leaderboard: {
+        Args: { _college_id: string; _limit?: number; _semester_id: string }
+        Returns: {
+          attendance_count: number
+          name: string
+          rank: number
+        }[]
       }
     }
     Enums: {
