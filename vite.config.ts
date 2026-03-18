@@ -67,7 +67,7 @@ export default defineConfig(({ mode }) => ({
           {
             urlPattern: ({ request, url }) =>
               request.method === "GET" &&
-              url.origin === self.location.origin &&
+              url.origin === globalThis.location.origin &&
               (request.destination === "font" || request.destination === "image"),
             handler: "CacheFirst",
             options: {
